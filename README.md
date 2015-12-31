@@ -19,3 +19,5 @@ NSLog(@"segment 1 select %@",@(idx));
 
 ## result
 
+![](https://raw.githubusercontent.com/zsy78191/XXXSegmentView/master/XXXSementView.gif)
+
