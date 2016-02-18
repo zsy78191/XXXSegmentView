@@ -5,7 +5,7 @@ This segment view can use storyboard or code.
 
 ##example 
 
-```
+```objc
 @property (weak, nonatomic) IBOutlet XXXSegmentView *segment1;
 
 [self.segment1 configForTitles:@[@"Main",@"Monments",@"More",@"Me"]];
