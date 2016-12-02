@@ -163,6 +163,7 @@
 
 - (void)setSelectItemAtIndex:(NSUInteger)idx animate:(BOOL)animated
 {
+    self.selected = idx;
     self.idx = idx;
     __weak XXXSegmentView* weakSelf = self;
     [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
