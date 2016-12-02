@@ -29,11 +29,22 @@
 - (UIView *)selectView
 {
     if (!_selectView) {
-        _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 2)];
+        _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, self.heightOfIndictor)];
         [self addSubview:_selectView];
         _selectView.backgroundColor = self.tintColor;
     }
     return _selectView;
+}
+
+- (void)setHeightOfIndictor:(CGFloat)heightOfIndictor
+{
+    _heightOfIndictor = heightOfIndictor;
+    
+    self.selectView.bounds = ({
+        CGRect rect = self.selectView.bounds;
+        rect.size.height = heightOfIndictor;
+        rect;
+    });
 }
 
 - (UIColor *)baseColor
@@ -60,12 +71,47 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    //// Rectangle Drawing
+    if (self.hasBreakline) {
+        CGFloat width = rect.size.width / self.number;
+        
+        for (int i = 0; i < self.number - 1; i ++) {
+            UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect: CGRectMake(width*(i+1) - self.breaklineSize.width/2, (rect.size.height - self.breaklineSize.height) / 2, self.breaklineSize.width, self.breaklineSize.height)];
+            [self.breaklineColor setFill];
+            [rectanglePath fill];
+        }
+    }
+}
+
+- (void)setHasBreakline:(BOOL)hasBreakline
+{
+    _hasBreakline = hasBreakline;
+    [self setNeedsDisplay];
+}
+
+- (void)setBreaklineColor:(UIColor *)breaklineColor
+{
+    _breaklineColor = breaklineColor;
+    [self setNeedsDisplay];
+}
+
+- (void)setBreaklineSize:(CGSize)breaklineSize
+{
+    _breaklineSize = breaklineSize;
+    [self setNeedsDisplay];
+}
+
 - (void)loadView
 {
+    self.breaklineSize = CGSizeMake(0.5, 18);
+    self.breaklineColor = [UIColor colorWithRed:0.89 green:0.89 blue:0.89 alpha:1.00];
+    self.hasBreakline = NO;
     self.leftAndRightLineEdge = 0;
+    self.heightOfIndictor = 2;
     self.backgroundColor = [UIColor clearColor];
-    
-    
     
     UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, self.frame.size.width, 0.5)];
     line.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
@@ -106,6 +152,8 @@
     
     self.selected = 0;
     [self setSelectItemAtIndex:self.selected animate:NO];
+    
+    [self setNeedsDisplay];
 }
 
 - (void)setSelectItemAtIndex:(NSUInteger)idx
@@ -116,23 +164,24 @@
 - (void)setSelectItemAtIndex:(NSUInteger)idx animate:(BOOL)animated
 {
     self.idx = idx;
+    __weak XXXSegmentView* weakSelf = self;
     [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[UILabel class]]) {
             UILabel* label = obj;
-            if (self.selected + 981 == label.tag) {
-                label.textColor = self.tintColor;
+            if (weakSelf.selected + 981 == label.tag) {
+                label.textColor = weakSelf.tintColor;
             }
             else
             {
-                label.textColor = self.baseColor;
+                label.textColor = weakSelf.baseColor;
             }
 
         }
     }];
     
     void (^ setFrameBlock)(void) = ^{
-        UILabel* label = (UILabel*)[self viewWithTag:idx + 981];
-        [self.selectView setFrame:CGRectMake(label.frame.origin.x - self.leftAndRightLineEdge, label.frame.size.height + label.frame.origin.y + 10, label.frame.size.width + self.leftAndRightLineEdge*2, 2)];
+        UILabel* label = (UILabel*)[weakSelf viewWithTag:idx + 981];
+        [weakSelf.selectView setFrame:CGRectMake(label.frame.origin.x - weakSelf.leftAndRightLineEdge, self.frame.size.height - self.heightOfIndictor, label.frame.size.width + weakSelf.leftAndRightLineEdge*2, self.heightOfIndictor)];
     };
     
     if (animated) {
@@ -167,7 +216,9 @@
     NSInteger touchNumber = point.x / detla;
     self.selected = touchNumber;
 //    [self setNeedsLayout];
-    [self setSelectItemAtIndex:touchNumber animate:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setSelectItemAtIndex:touchNumber animate:YES];
+    });
     
     if (self.didSelectBlock) {
         self.didSelectBlock(touchNumber);

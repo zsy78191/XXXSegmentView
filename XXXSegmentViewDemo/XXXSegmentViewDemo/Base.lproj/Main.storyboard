@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This one is installed by storyboard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fM-vt-9ym">
-                                <rect key="frame" x="170" y="75" width="261" height="21"/>
+                                <rect key="frame" x="57" y="75" width="261" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="wLL-77-iK4"/>
                                     <constraint firstAttribute="width" constant="261" id="zko-GU-gPi"/>
@@ -29,14 +33,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ld2-wF-aV2" customClass="XXXSegmentView">
-                                <rect key="frame" x="20" y="104" width="560" height="80"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="104" width="343" height="55"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ONt-DG-0fx"/>
+                                    <constraint firstAttribute="height" constant="55" id="ONt-DG-0fx"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This one is installed by code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPu-8r-2Rx">
-                                <rect key="frame" x="169.5" y="223" width="261" height="21"/>
+                                <rect key="frame" x="57" y="223" width="261" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VjD-OZ-EwM"/>
                                     <constraint firstAttribute="width" constant="261" id="vg0-OA-Hig"/>
@@ -46,10 +50,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6fM-vt-9ym" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5vW-Dd-uvF"/>
-                            <constraint firstItem="lPu-8r-2Rx" firstAttribute="top" secondItem="Ld2-wF-aV2" secondAttribute="bottom" constant="39" id="ACn-EZ-Lhq"/>
+                            <constraint firstItem="lPu-8r-2Rx" firstAttribute="top" secondItem="Ld2-wF-aV2" secondAttribute="bottom" constant="64" id="ACn-EZ-Lhq"/>
                             <constraint firstItem="Ld2-wF-aV2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HrA-D6-06E"/>
                             <constraint firstItem="6fM-vt-9ym" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="55" id="JXr-ex-TZb"/>
                             <constraint firstItem="Ld2-wF-aV2" firstAttribute="top" secondItem="6fM-vt-9ym" secondAttribute="bottom" constant="8" id="Sy0-t7-Vtj"/>
@@ -63,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="389"/>
+            <point key="canvasLocation" x="304.80000000000001" y="388.15592203898052"/>
         </scene>
     </scenes>
 </document>

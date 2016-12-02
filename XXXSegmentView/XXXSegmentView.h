@@ -19,7 +19,7 @@
 @property (nonatomic, assign) NSInteger idx;
 @property (nonatomic, strong) void (^ didSelectBlock)(NSUInteger idx);
 - (void)setSelectItemAtIndex:(NSUInteger)idx;
-
+- (void)setSelectItemAtIndex:(NSUInteger)idx animate:(BOOL)animated;
 /**
  *  set tint color
  *
@@ -31,8 +31,6 @@
  *  unselected label's color
  */
 @property (nonatomic, strong) UIColor* baseColor;
-
-
 
 /**
  *  defalut is 0;
@@ -48,5 +46,29 @@
  *  label font; defalut is nil;
  */
 @property (nonatomic, strong) UIFont* labelFont;
+
+
+/**
+ height of indictor , default is 2.0;
+ */
+@property (nonatomic, assign) CGFloat heightOfIndictor;
+
+
+/**
+ Breakline default is NO;
+ */
+@property (nonatomic, assign) BOOL hasBreakline;
+
+
+/**
+ default is CGSize(0.5,18)
+ */
+@property (nonatomic, assign) CGSize breaklineSize;
+
+
+/**
+ defalut is #E3E3E3 [UIColor colorWithRed:0.89 green:0.89 blue:0.89 alpha:1.00]
+ */
+@property (nonatomic, strong) UIColor* breaklineColor;
 
 @end
